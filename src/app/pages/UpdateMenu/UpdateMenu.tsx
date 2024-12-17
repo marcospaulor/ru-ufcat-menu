@@ -15,7 +15,7 @@ export default function UpdateMenu() {
   ]
 
   return (
-    <div className="font-sans p-4">
+    <div className="p-4">
       {/* Abas */}
       <ul className="flex w-max border-b space-x-4 overflow-hidden">
         {tabs.map((tab) => (
@@ -23,7 +23,7 @@ export default function UpdateMenu() {
             key={tab.id}
             className={`tab text-center text-sm py-3 px-6 rounded-tl-2xl rounded-tr-2xl cursor-pointer ${
               activeTab === tab.id
-                ? 'text-white font-bold bg-blue-600'
+                ? 'text-white font-bold bg-orange-ufcat'
                 : 'text-gray-600 font-semibold bg-gray-200'
             }`}
             onClick={() => setActiveTab(tab.id)}
