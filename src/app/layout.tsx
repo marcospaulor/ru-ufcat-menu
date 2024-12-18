@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
-import NavBar from './components/NavBar/NavBar'
+import { AuthProvider } from './context/AuthContext'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 const rawline = localFont({ src: '/fonts/rawline-500.ttf' })
-const workSans = localFont({ src: '/fonts/WorkSans-Regular.ttf' })
+// const workSans = localFont({ src: '/fonts/WorkSans-Regular.ttf' })
 
 export default function RootLayout({
   children,
@@ -19,9 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${rawline.className} bg-gray-ufcat`}>
-        <NavBar />
-        <main>{children}</main>
-        <footer></footer>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   )
