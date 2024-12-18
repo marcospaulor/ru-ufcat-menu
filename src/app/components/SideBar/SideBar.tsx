@@ -1,12 +1,17 @@
-import React from 'react'
+'use client'
 import Link from 'next/link'
 
 interface SideBarProps {
   sideBarOpen: boolean
   toggleSideBar: () => void
+  onLogout: () => void
 }
 
-const SideBar: React.FC<SideBarProps> = ({ sideBarOpen, toggleSideBar }) => {
+const SideBar: React.FC<SideBarProps> = ({
+  sideBarOpen,
+  toggleSideBar,
+  onLogout,
+}) => {
   return (
     <>
       {/* Fundo clicável para fechar o SideBar */}
@@ -93,6 +98,7 @@ const SideBar: React.FC<SideBarProps> = ({ sideBarOpen, toggleSideBar }) => {
             <Link
               href="#"
               className=" hover:text-white text-[15px] block hover:bg-orange-ufcat rounded px-4 py-2.5 transition-all"
+              onClick={onLogout}
             >
               Sair
             </Link>

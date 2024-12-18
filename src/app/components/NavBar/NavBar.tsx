@@ -3,10 +3,12 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import ProfileDropdown from '@/app/components/ProfileDropdown/ProfileDropdown'
 import SideBar from '@/app/components/SideBar/SideBar'
+import { useLogout } from '@/app/hooks/useLogout'
 
 const NavBar: React.FC = () => {
   const [SideBarOpen, setSideBarOpen] = useState(false)
   const [ProfileDropdownOpen, setProfileDropdownOpen] = useState(false)
+  const handleLogout = useLogout()
 
   const toggleSideBar = () => {
     setSideBarOpen((prev) => !prev)
@@ -57,6 +59,7 @@ const NavBar: React.FC = () => {
               <ProfileDropdown
                 isOpen={ProfileDropdownOpen}
                 toggleDropdown={toggleProfileDropdown}
+                onLogout={handleLogout}
               />
             </li>
           </ul>
@@ -77,7 +80,11 @@ const NavBar: React.FC = () => {
             </button>
 
             {/* Componente SideBar */}
-            <SideBar sideBarOpen={SideBarOpen} toggleSideBar={toggleSideBar} />
+            <SideBar
+              sideBarOpen={SideBarOpen}
+              toggleSideBar={toggleSideBar}
+              onLogout={handleLogout}
+            />
           </div>
         </div>
       </div>
