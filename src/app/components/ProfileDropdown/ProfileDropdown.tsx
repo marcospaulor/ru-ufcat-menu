@@ -1,13 +1,14 @@
-import React from 'react'
-
+'use client'
 interface ProfileDropdownProps {
   isOpen: boolean
   toggleDropdown: () => void
+  onLogout: () => void
 }
 
 const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
   isOpen,
   toggleDropdown,
+  onLogout,
 }) => {
   if (!isOpen) return null
 
@@ -64,6 +65,7 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
             <a
               href="#"
               className="block text-sm hover:text-white hover:bg-orange-ufcat rounded px-4 py-2.5 transition-all"
+              onClick={onLogout}
             >
               Sair
             </a>
