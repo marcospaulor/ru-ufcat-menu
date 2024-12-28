@@ -2,7 +2,7 @@
 import { useAuth } from '@/app/hooks/useAuth'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import UpdateMenu from './(pages)/updateMenu/page'
+import UpdateMenu from './(pages)/updatemenu/page'
 import Layout from './components/Layout'
 import LoadingScreen from './components/Loading/Loading'
 
@@ -26,10 +26,8 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-ufcat">
-      <Layout>
-        <UpdateMenu />
-      </Layout>
+    <div className="min-h-screen w-full flex flex-col justify-center items-center bg-gray-ufcat">
+      <UpdateMenu />
     </div>
   )
 }
