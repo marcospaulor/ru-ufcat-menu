@@ -39,7 +39,7 @@ export function useMenuLogic() {
     },
     { category: 'Acompanhamento', foods: ['Batata Frita', 'Farofa'] },
     { category: 'Guarnição', foods: ['Vinagrete', 'Molho à Campanha'] },
-    { category: 'Saladas', foods: ['Alface', 'Tomate', 'Rúcula'] },
+    { category: 'Salada', foods: ['Alface', 'Tomate', 'Rúcula'] },
     { category: 'Sobremesa', foods: ['Mousse de Maracujá', 'Pudim'] },
   ]
 
