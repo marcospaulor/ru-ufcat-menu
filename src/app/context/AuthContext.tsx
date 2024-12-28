@@ -8,6 +8,7 @@ import {
   User,
 } from 'firebase/auth'
 import { auth } from '../firebase/config'
+import LoadingScreen from '../components/Loading/Loading'
 
 // Definição do tipo para o contexto
 interface AuthContextProps {
@@ -67,7 +68,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
   return (
     <AuthContext.Provider value={{ user, loading, login, logout }}>
-      {loading ? <div>Carregando...</div> : children}
+      {loading ? <LoadingScreen /> : children}
     </AuthContext.Provider>
   )
 }

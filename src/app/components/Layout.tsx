@@ -10,7 +10,7 @@ function Layout({ children }: LayoutProps) {
   return (
     <div className="bg-gray-ufcat w-full min-h-screen flex flex-col">
       <NavBar />
-      <div className="flex-1">{children}</div>
+      <div className="flex flex-1 justify-center">{children}</div>
     </div>
   )
 }
