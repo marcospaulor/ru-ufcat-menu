@@ -1,6 +1,5 @@
 // UpdateMenu Component Structure
 'use client'
-
 import Tabs from './components/Tabs'
 import TabContent from './components/TabContent'
 import ActionButtons from './components/ActionButtons'
