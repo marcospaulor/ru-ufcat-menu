@@ -2,7 +2,7 @@
 import { useAuth } from '@/app/hooks/useAuth'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import UpdateMenu from '@/app/(pages)/updatemenu/page'
+import UpdateMenu from '@/app/(pages)/update_menu/page'
 import LoadingScreen from './components/Loading/Loading'
 
 export default function Home() {
