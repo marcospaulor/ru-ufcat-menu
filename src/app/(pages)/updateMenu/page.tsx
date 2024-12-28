@@ -1,54 +1,73 @@
+// UpdateMenu Component Structure
 'use client'
-import { useState } from 'react'
+
+import Tabs from './components/Tabs'
+import TabContent from './components/TabContent'
+import ActionButtons from './components/ActionButtons'
+import Modals from './components/Modals'
+import { useMenuLogic } from '@/app/hooks/useMenuLogic'
 
 export default function UpdateMenu() {
-  // Estado para rastrear a aba ativa
-  const [activeTab, setActiveTab] = useState('segunda')
-
-  // Dados para as abas
-  const tabs = [
-    { id: 'segunda', title: 'Segunda', content: 'Conteúdo da Segunda-feira.' },
-    { id: 'terca', title: 'Terça', content: 'Conteúdo da Terça-feira.' },
-    { id: 'quarta', title: 'Quarta', content: 'Conteúdo da Quarta-feira.' },
-    { id: 'quinta', title: 'Quinta', content: 'Conteúdo da Quinta-feira.' },
-    { id: 'sexta', title: 'Sexta', content: 'Conteúdo da Sexta-feira.' },
-  ]
+  const {
+    activeTab,
+    setActiveTab,
+    mealTime,
+    setMealTime,
+    selectedMeals,
+    toggleFood,
+    clearSelection,
+    isConfirmModalOpen,
+    setIsConfirmModalOpen,
+    isAlertModalOpen,
+    setIsAlertModalOpen,
+    isSubmitModalOpen,
+    setIsSubmitModalOpen,
+    handleFinalSubmit,
+    tabs,
+    categories,
+  } = useMenuLogic()
 
   return (
-    <div className="p-4">
-      {/* Abas */}
-      <ul className="flex w-max border-b space-x-4 overflow-hidden">
-        {tabs.map((tab) => (
-          <li
-            key={tab.id}
-            className={`tab text-center text-sm py-3 px-6 rounded-tl-2xl rounded-tr-2xl cursor-pointer ${
-              activeTab === tab.id
-                ? 'text-white font-bold bg-orange-ufcat'
-                : 'text-gray-600 font-semibold bg-gray-200'
-            }`}
-            onClick={() => setActiveTab(tab.id)}
-          >
-            {tab.title}
-          </li>
-        ))}
-      </ul>
+    <div className="p-4 flex flex-col md:items-center w-full md:w-[70%]">
+      <div className="flex md:flex-col md:items-center w-full">
+        {/* Tabs */}
+        <Tabs activeTab={activeTab} tabs={tabs} setActiveTab={setActiveTab} />
 
-      {/* Conteúdo das abas */}
-      <div className="mt-8">
-        {tabs.map(
-          (tab) =>
-            activeTab === tab.id && (
-              <div
-                key={tab.id}
-                id={`${tab.id}Content`}
-                className="tab-content max-w-2xl"
-              >
-                <h4 className="text-lg font-bold text-gray-600">{tab.title}</h4>
-                <p className="text-sm text-gray-600 mt-4">{tab.content}</p>
-              </div>
-            )
-        )}
+        {/* Tab Content */}
+        <TabContent
+          activeTab={activeTab}
+          tabs={tabs}
+          mealTime={mealTime}
+          setMealTime={setMealTime}
+          categories={categories}
+          selectedMeals={selectedMeals}
+          toggleFood={toggleFood}
+        />
       </div>
+
+      {/* Action Buttons */}
+      <ActionButtons
+        handleClearClick={() => setIsConfirmModalOpen(true)}
+        handleSubmitClick={() => setIsSubmitModalOpen(true)}
+      />
+
+      {/* Modals */}
+      <Modals
+        isConfirmModalOpen={isConfirmModalOpen}
+        onCloseConfirm={() => setIsConfirmModalOpen(false)}
+        onConfirmClear={() => {
+          clearSelection()
+          setIsConfirmModalOpen(false)
+        }}
+        isAlertModalOpen={isAlertModalOpen}
+        onCloseAlert={() => setIsAlertModalOpen(false)}
+        isSubmitModalOpen={isSubmitModalOpen}
+        onCloseSubmit={() => setIsSubmitModalOpen(false)}
+        onSubmit={handleFinalSubmit}
+        selectedMeals={selectedMeals}
+        tabs={tabs}
+        categories={categories}
+      />
     </div>
   )
 }
