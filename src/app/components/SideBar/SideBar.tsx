@@ -60,8 +60,9 @@ const SideBar: React.FC<SideBarProps> = ({
           </li>
           <li>
             <Link
-              href="#"
+              href="update_menu"
               className=" hover:text-white text-[15px] block hover:bg-orange-ufcat rounded px-4 py-2.5 transition-all"
+              onClick={toggleSideBar}
             >
               Atualizar Cardápio
             </Link>
@@ -69,8 +70,9 @@ const SideBar: React.FC<SideBarProps> = ({
 
           <li>
             <Link
-              href="#"
+              href="add_food"
               className=" hover:text-white text-[15px] block hover:bg-orange-ufcat rounded px-4 py-2.5 transition-all"
+              onClick={toggleSideBar}
             >
               Cadastrar Alimentos
             </Link>
@@ -80,6 +82,7 @@ const SideBar: React.FC<SideBarProps> = ({
             <Link
               href="#"
               className=" hover:text-white text-[15px] block hover:bg-orange-ufcat rounded px-4 py-2.5 transition-all"
+              onClick={toggleSideBar}
             >
               Avaliações
             </Link>
@@ -90,6 +93,7 @@ const SideBar: React.FC<SideBarProps> = ({
             <Link
               href="#"
               className=" hover:text-white text-[15px] block hover:bg-orange-ufcat rounded px-4 py-2.5 transition-all"
+              onClick={toggleSideBar}
             >
               Ajuda
             </Link>

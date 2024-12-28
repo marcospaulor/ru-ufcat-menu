@@ -27,12 +27,12 @@ const NavBar: React.FC = () => {
         </Link>
         <ul className="hidden lg:flex lg:gap-x-10 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-2/3 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-4 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50">
           <li className="max-lg:border-b max-lg:py-3 max-lg:px-3 relative lg:after:absolute lg:after:bg-white lg:after:w-full lg:after:h-[2px] lg:after:block lg:after:top-7 lg:after:transition-all lg:after:duration-300">
-            <Link href="#" className="text-white block text-[15px]">
+            <Link href="update_menu" className="text-white block text-[15px]">
               Atualizar Cardápio
             </Link>
           </li>
           <li className="max-lg:border-b max-lg:py-3 max-lg:px-3 relative lg:hover:after:absolute lg:after:bg-white lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block lg:after:top-7 lg:after:transition-all lg:after:duration-300">
-            <Link href="#" className="text-white block text-[15px]">
+            <Link href="add_food" className="text-white block text-[15px]">
               Cadastrar Alimentos
             </Link>
           </li>
