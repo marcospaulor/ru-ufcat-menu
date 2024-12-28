@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
 import { AuthProvider } from './context/AuthContext'
+import NavBar from './components/NavBar/NavBar'
 
 export const metadata: Metadata = {
   title: 'Cardápio Serviços UFCAT - Admin',
@@ -19,7 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${rawline.className} bg-gray-ufcat`}>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <NavBar />
+          <main className="flex flex-1 justify-center">{children}</main>
+        </AuthProvider>
       </body>
     </html>
   )
