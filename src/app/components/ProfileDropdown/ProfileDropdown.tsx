@@ -1,4 +1,7 @@
 'use client'
+
+import Link from 'next/link'
+
 interface ProfileDropdownProps {
   isOpen: boolean
   toggleDropdown: () => void
@@ -54,21 +57,21 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
         <hr className="border-b-0 my-4" />
         <ul className="space-y-3">
           <li>
-            <a
+            <Link
               href="#"
               className="block text-sm hover:text-white hover:bg-orange-ufcat rounded px-4 py-2.5 transition-all"
             >
               Ajuda
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              href="login"
               className="block text-sm hover:text-white hover:bg-orange-ufcat rounded px-4 py-2.5 transition-all"
               onClick={onLogout}
             >
               Sair
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

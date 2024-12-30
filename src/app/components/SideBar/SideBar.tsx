@@ -80,7 +80,7 @@ const SideBar: React.FC<SideBarProps> = ({
 
           <li>
             <Link
-              href="#"
+              href="rating"
               className=" hover:text-white text-[15px] block hover:bg-orange-ufcat rounded px-4 py-2.5 transition-all"
               onClick={toggleSideBar}
             >
@@ -91,7 +91,7 @@ const SideBar: React.FC<SideBarProps> = ({
           <hr className="border-b-0 my-4" />
           <li>
             <Link
-              href="#"
+              href="help"
               className=" hover:text-white text-[15px] block hover:bg-orange-ufcat rounded px-4 py-2.5 transition-all"
               onClick={toggleSideBar}
             >
@@ -100,7 +100,7 @@ const SideBar: React.FC<SideBarProps> = ({
           </li>
           <li>
             <Link
-              href="#"
+              href="login"
               className=" hover:text-white text-[15px] block hover:bg-orange-ufcat rounded px-4 py-2.5 transition-all"
               onClick={onLogout}
             >

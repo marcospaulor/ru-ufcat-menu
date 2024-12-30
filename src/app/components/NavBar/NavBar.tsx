@@ -4,10 +4,12 @@ import Link from 'next/link'
 import ProfileDropdown from '@/app/components/ProfileDropdown/ProfileDropdown'
 import SideBar from '@/app/components/SideBar/SideBar'
 import { useLogout } from '@/app/hooks/useLogout'
+import Image from 'next/image'
 
 const NavBar: React.FC = () => {
   const [SideBarOpen, setSideBarOpen] = useState(false)
   const [ProfileDropdownOpen, setProfileDropdownOpen] = useState(false)
+  const [activeLink, setActiveLink] = useState<string>('update_menu') // Estado para o link ativo
   const handleLogout = useLogout()
 
   const toggleSideBar = () => {
@@ -23,24 +25,37 @@ const NavBar: React.FC = () => {
       <div className="flex flex-wrap items-center justify-between lg:gap-y-4 gap-y-6 gap-x-4 w-full">
         {/* Logo */}
         <Link href="/">
-          <img src="/images/logo_completa.png" alt="logo" className="w-36" />
+          <Image
+            src="/images/logo_completa.png"
+            width={1000}
+            height={1000}
+            alt="logo"
+            className="w-36"
+          />
         </Link>
         <ul className="hidden lg:flex lg:gap-x-10 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-2/3 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-4 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50">
-          <li className="max-lg:border-b max-lg:py-3 max-lg:px-3 relative lg:after:absolute lg:after:bg-white lg:after:w-full lg:after:h-[2px] lg:after:block lg:after:top-7 lg:after:transition-all lg:after:duration-300">
-            <Link href="update_menu" className="text-white block text-[15px]">
-              Atualizar Cardápio
-            </Link>
-          </li>
-          <li className="max-lg:border-b max-lg:py-3 max-lg:px-3 relative lg:hover:after:absolute lg:after:bg-white lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block lg:after:top-7 lg:after:transition-all lg:after:duration-300">
-            <Link href="add_food" className="text-white block text-[15px]">
-              Cadastrar Alimentos
-            </Link>
-          </li>
-          <li className="max-lg:border-b max-lg:py-3 max-lg:px-3 relative lg:hover:after:absolute lg:after:bg-white lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block lg:after:top-7 lg:after:transition-all lg:after:duration-300">
-            <Link href="#" className="text-white block text-[15px]">
-              Avaliações
-            </Link>
-          </li>
+          {[
+            { href: 'update_menu', label: 'Atualizar Cardápio' },
+            { href: 'add_food', label: 'Cadastrar Alimentos' },
+            { href: 'rating', label: 'Avaliações' },
+          ].map((link) => (
+            <li
+              key={link.href}
+              className={`max-lg:border-b max-lg:py-3 max-lg:px-3 relative lg:after:absolute lg:after:bg-white lg:after:transition-all lg:after:duration-300 ${
+                activeLink === link.href
+                  ? 'lg:after:w-full lg:after:h-[2px]' // Estilo para o link ativo
+                  : 'lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:w-0' // Estilo para o link inativo
+              }`}
+            >
+              <Link
+                href={link.href}
+                onClick={() => setActiveLink(link.href)} // Define o link ativo
+                className={`text-[15px] block text-white`} // Classe de cor para o link ativo
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         <div className="flex items-center max-sm:ml-auto space-x-6">
