@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '@/app/hooks/useAuth'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 function Login() {
   const { login } = useAuth()
@@ -44,7 +45,6 @@ function Login() {
         localStorage.setItem('rememberedEmail', email)
       }
       await login(email, password) // Chama a função de login com os valores de e-mail e senha
-      console.log('Login efetuado com sucesso!')
       router.replace('/') // Redireciona para a página inicial
     } catch (error) {
       if (error instanceof Error) {
@@ -59,10 +59,12 @@ function Login() {
     <div className="bg-green-ufcat w-full">
       <div className="min-h-screen flex flex-col items-center justify-center py-6 px-4">
         <div className="max-w-md w-full mt-10 lg:mt-2">
-          <a href="javascript:void(0)">
-            <img
+          <a href="/">
+            <Image
               src="/images/logo_completa.png"
               alt="logo"
+              width={1000}
+              height={1000}
               className="w-40 mb-8 mx-auto block"
             />
           </a>
