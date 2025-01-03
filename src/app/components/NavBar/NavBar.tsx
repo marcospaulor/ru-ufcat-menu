@@ -21,7 +21,7 @@ const NavBar: React.FC = () => {
   }
 
   return (
-    <header className="flex shadow-md py-3 px-4 sm:px-10 bg-green-ufcat min-h-[70px] tracking-wide relative z-50">
+    <header className="flex shadow-md py-3 px-4 sm:px-10 bg-green-ufcat min-h-[70px] tracking-wide relative z-[60]">
       <div className="flex flex-wrap items-center justify-between lg:gap-y-4 gap-y-6 gap-x-4 w-full">
         {/* Logo */}
         <Link href="/">
