@@ -31,7 +31,7 @@ class FirestoreService {
     try {
       const colRef = collection(db, collectionName)
       const querySnapshot = await getDocs(colRef)
-
+      console.log(querySnapshot.docs.map((doc) => doc.data()))
       return querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
