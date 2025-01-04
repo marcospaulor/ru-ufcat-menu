@@ -1,22 +1,16 @@
 'use client'
 import React, { useState } from 'react'
 import { FaPen, FaTrash } from 'react-icons/fa6'
-
-interface Food {
-  id: number
-  name: string
-  category: string
-}
+import useFoods from '@/app/hooks/useFoods'
+import { Food } from '@/app/interface/types'
+import LoadingScreen from '@/app/components/Loading/Loading'
 
 const AddFood: React.FC = () => {
-  const [foods, setFoods] = useState<Food[]>([])
-  const [newFood, setNewFood] = useState<Food>({
-    id: Date.now(),
-    name: '',
-    category: '',
-  })
-  const [editFood, setEditFood] = useState<Food | null>(null)
-  const [deleteFoodId, setDeleteFoodId] = useState<number | null>(null)
+  const { foods, loading, error, addFood, updateFood, deleteFood } = useFoods()
+  const [name, setName] = useState('')
+  const [category, setCategory] = useState('')
+  const [editingFood, setEditingFood] = useState<null | Food>(null)
+  const [deleteFoodId, setDeleteFoodId] = useState<string | null>(null)
 
   const categories = [
     'Prato Principal',
@@ -36,78 +30,103 @@ const AddFood: React.FC = () => {
 
   const handleNameChange = (name: string) => {
     if (validateName(name)) {
-      setNewFood({ ...newFood, name })
+      setName(name)
     }
   }
 
   const handleEditNameChange = (name: string) => {
-    if (editFood && validateName(name)) {
-      setEditFood({ ...editFood, name })
+    if (editingFood && validateName(name)) {
+      setEditingFood({ ...editingFood, name })
     }
   }
 
-  const handleAddFood = () => {
-    if (!newFood.name || !newFood.category) return
-    setFoods([...foods, newFood])
-    setNewFood({ id: Date.now(), name: '', category: '' })
+  if (loading) {
+    return <LoadingScreen />
   }
 
-  const handleEditFood = (id: number) => {
-    const food = foods.find((food) => food.id === id)
-    if (food) {
-      setEditFood(food)
+  if (error) {
+    return <p>Erro: {error}</p>
+  }
+
+  const handleAddOrEditFood = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (editingFood) {
+      await updateFood(editingFood.id, name, category)
+      setEditingFood(null)
+    } else {
+      await addFood(name, category)
     }
+    setName('')
+    setCategory('')
   }
 
-  const handleSaveEdit = () => {
-    if (editFood) {
-      setFoods((prevFoods) =>
-        prevFoods.map((food) => (food.id === editFood.id ? editFood : food))
-      )
-      setEditFood(null)
+  const handleEditFood = (foodToEdit: Food) => {
+    setEditingFood(foodToEdit)
+    setName(foodToEdit.name)
+    setCategory(foodToEdit.category)
+  }
+
+  const handleDeleteFood = async () => {
+    if (deleteFoodId) {
+      await deleteFood(deleteFoodId)
+      setDeleteFoodId(null)
     }
-  }
-
-  const handleDeleteFood = (id: number) => {
-    setFoods(foods.filter((food) => food.id !== id))
-    setDeleteFoodId(null) // Fechar o modal após excluir
   }
 
   return (
     <div className="p-8 space-y-6">
       <h1 className="text-2xl font-bold text-gray-800">Gerenciar Cardápio</h1>
 
-      {/* Formulário para adicionar */}
+      {/* Formulário para adicionar ou editar comida */}
       <div className="space-y-4">
         <h2 className="text-lg font-semibold text-gray-600">
-          Adicionar Comida
+          {editingFood ? 'Editar Comida' : 'Adicionar Nova Comida'}
         </h2>
-        <input
-          type="text"
-          placeholder="Nome da comida"
-          maxLength={MAX_NAME_LENGTH}
-          value={newFood.name}
-          onChange={(e) => handleNameChange(e.target.value)}
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
-        <select
-          value={newFood.category}
-          onChange={(e) => setNewFood({ ...newFood, category: e.target.value })}
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+        <form
+          onSubmit={handleAddOrEditFood}
+          className="flex flex-col space-y-4"
         >
-          <option value="">Selecione uma categoria</option>
-          {categories.map((category) => (
-            <option key={category} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
-        <button
-          onClick={handleAddFood}
-          className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
-        >
-          Adicionar
-        </button>
+          <div className="flex flex-col">
+            <label htmlFor="name" className="text-gray-700">
+              Nome da Comida
+            </label>
+            <input
+              id="name"
+              type="text"
+              maxLength={MAX_NAME_LENGTH}
+              value={name}
+              onChange={(e) => handleNameChange(e.target.value)}
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Ex: Arroz"
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="category" className="text-gray-700">
+              Categoria
+            </label>
+            <select
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            >
+              <option value="">Selecione uma categoria</option>
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+          >
+            {editingFood ? 'Atualizar Comida' : 'Adicionar Comida'}
+          </button>
+        </form>
       </div>
 
       {/* Tabela de comidas */}
@@ -137,13 +156,13 @@ const AddFood: React.FC = () => {
                   </td>
                   <td className="flex justify-center h-full items-center border border-gray-300 px-4 py-2 space-x-2">
                     <button
-                      onClick={() => handleEditFood(food.id)}
+                      onClick={() => handleEditFood(food)}
                       className="px-2 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
                     >
                       <FaPen />
                     </button>
                     <span
-                      onClick={() => setDeleteFoodId(food.id)} // Modificar para id do item
+                      onClick={() => setDeleteFoodId(food.id)}
                       className="px-2 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
                     >
                       <FaTrash />
@@ -168,13 +187,13 @@ const AddFood: React.FC = () => {
             </p>
             <div className="flex justify-end space-x-4 mt-4">
               <button
-                onClick={() => setDeleteFoodId(null)} // Fechar o modal
+                onClick={() => setDeleteFoodId(null)}
                 className="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
               >
                 Cancelar
               </button>
               <button
-                onClick={() => handleDeleteFood(deleteFoodId)}
+                onClick={handleDeleteFood}
                 className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
               >
                 Excluir
@@ -185,7 +204,7 @@ const AddFood: React.FC = () => {
       )}
 
       {/* Modal de edição */}
-      {editFood && (
+      {editingFood && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
             <h2 className="text-lg font-bold text-gray-800 mb-4">
@@ -194,15 +213,14 @@ const AddFood: React.FC = () => {
             <input
               type="text"
               placeholder="Nome da comida"
-              value={editFood.name}
+              value={name}
               onChange={(e) => handleEditNameChange(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4"
+              maxLength={MAX_NAME_LENGTH}
             />
             <select
-              value={editFood.category}
-              onChange={(e) =>
-                setEditFood({ ...editFood, category: e.target.value })
-              }
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               <option value="">Selecione uma categoria</option>
@@ -214,13 +232,13 @@ const AddFood: React.FC = () => {
             </select>
             <div className="flex justify-end space-x-4 mt-4">
               <button
-                onClick={() => setEditFood(null)}
+                onClick={() => setEditingFood(null)}
                 className="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
               >
                 Cancelar
               </button>
               <button
-                onClick={handleSaveEdit}
+                onClick={handleAddOrEditFood}
                 className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
               >
                 Salvar
