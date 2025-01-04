@@ -19,3 +19,9 @@ export interface MealData {
   meal: string
   rating: number
 }
+
+export interface Food {
+  id: string
+  name: string
+  category: string
+}
