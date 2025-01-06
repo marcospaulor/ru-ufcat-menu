@@ -74,7 +74,13 @@ class FirestoreService {
   async updateDocument(collectionName: string, docName: string, data: any) {
     try {
       const docRef = doc(db, collectionName, docName)
-      await updateDoc(docRef, data)
+      const docSnap = await getDoc(docRef)
+      if (!docSnap.exists()) {
+        throw new Error('Document not found')
+      }
+      const objectData = docSnap.data()
+      const objectUpdate = { ...objectData, ...data }
+      await updateDoc(docRef, objectUpdate)
       return { id: docName, ...data }
     } catch (error) {
       console.error('Error updating document:', error)
