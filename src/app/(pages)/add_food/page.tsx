@@ -224,7 +224,7 @@ const AddFood: React.FC = () => {
               maxLength={MAX_NAME_LENGTH}
             />
             <select
-              value={category}
+              value={editingFood.category}
               onChange={(e) => setCategory(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
