@@ -29,13 +29,18 @@ const AddFood: React.FC = () => {
   }
 
   const handleNameChange = (name: string) => {
-    if (validateName(name)) {
-      setName(name)
+    if (name !== '' && !validateName(name)) {
+      return
     }
+    setName(name)
   }
 
   const handleEditNameChange = (name: string) => {
-    if (editingFood && validateName(name)) {
+    if (name !== '' && !validateName(name)) {
+      return
+    }
+
+    if (editingFood) {
       setEditingFood({ ...editingFood, name })
     }
   }
@@ -62,8 +67,6 @@ const AddFood: React.FC = () => {
 
   const handleEditFood = (foodToEdit: Food) => {
     setEditingFood(foodToEdit)
-    setName(foodToEdit.name)
-    setCategory(foodToEdit.category)
   }
 
   const handleDeleteFood = async () => {
@@ -74,63 +77,65 @@ const AddFood: React.FC = () => {
   }
 
   return (
-    <div className="p-8 space-y-6">
-      <h1 className="text-2xl font-bold text-gray-800">Gerenciar Cardápio</h1>
+    <div className="flex flex-col items-center w-full p-8 space-y-6">
+      <div className="w-full md:w-1/2">
+        <h1 className="text-2xl font-bold text-gray-800">Gerenciar Cardápio</h1>
 
-      {/* Formulário para adicionar ou editar comida */}
-      <div className="space-y-4">
-        <h2 className="text-lg font-semibold text-gray-600">
-          {editingFood ? 'Editar Comida' : 'Adicionar Nova Comida'}
-        </h2>
-        <form
-          onSubmit={handleAddOrEditFood}
-          className="flex flex-col space-y-4"
-        >
-          <div className="flex flex-col">
-            <label htmlFor="name" className="text-gray-700">
-              Nome da Comida
-            </label>
-            <input
-              id="name"
-              type="text"
-              maxLength={MAX_NAME_LENGTH}
-              value={name}
-              onChange={(e) => handleNameChange(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Ex: Arroz"
-            />
-          </div>
-
-          <div className="flex flex-col">
-            <label htmlFor="category" className="text-gray-700">
-              Categoria
-            </label>
-            <select
-              id="category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            >
-              <option value="">Selecione uma categoria</option>
-              {categories.map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <button
-            type="submit"
-            className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+        {/* Formulário para adicionar ou editar comida */}
+        <div className="space-y-4">
+          <h2 className="text-lg font-semibold text-gray-600">
+            Adicionar Nova Comida
+          </h2>
+          <form
+            onSubmit={handleAddOrEditFood}
+            className="flex flex-col space-y-4"
           >
-            {editingFood ? 'Atualizar Comida' : 'Adicionar Comida'}
-          </button>
-        </form>
+            <div className="flex flex-col">
+              <label htmlFor="name" className="text-gray-700">
+                Nome da Comida
+              </label>
+              <input
+                id="name"
+                type="text"
+                maxLength={MAX_NAME_LENGTH}
+                value={name}
+                onChange={(e) => handleNameChange(e.target.value)}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                placeholder="Ex: Arroz"
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <label htmlFor="category" className="text-gray-700">
+                Categoria
+              </label>
+              <select
+                id="category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              >
+                <option value="">Selecione uma categoria</option>
+                {categories.map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <button
+              type="submit"
+              className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+            >
+              Adicionar Comida
+            </button>
+          </form>
+        </div>
       </div>
 
       {/* Tabela de comidas */}
-      <div className="space-y-4">
+      <div className="w-full space-y-4 flex flex-col items-center">
         <h2 className="text-lg font-semibold text-gray-600">
           Lista de Comidas
         </h2>
@@ -148,13 +153,13 @@ const AddFood: React.FC = () => {
             <tbody>
               {foods.map((food) => (
                 <tr key={food.id} className="hover:bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-2">
+                  <td className="border border-gray-300 px-2 py-2">
                     {food.name}
                   </td>
-                  <td className="border border-gray-300 px-4 py-2">
+                  <td className="border border-gray-300 px-2 py-2">
                     {food.category}
                   </td>
-                  <td className="flex justify-center h-full items-center border border-gray-300 px-4 py-2 space-x-2">
+                  <td className="flex flex-col md:flex-row justify-center items-center border border-gray-300 px-2 py-2 space-y-2 md:space-x-2">
                     <button
                       onClick={() => handleEditFood(food)}
                       className="px-2 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
@@ -213,7 +218,7 @@ const AddFood: React.FC = () => {
             <input
               type="text"
               placeholder="Nome da comida"
-              value={name}
+              value={editingFood.name}
               onChange={(e) => handleEditNameChange(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4"
               maxLength={MAX_NAME_LENGTH}
