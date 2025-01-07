@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { firestoreService } from '@/app/services/FirestoreServices' // Substitua pelo caminho correto da configuração do Firebase
+import LoadingScreen from '@/app/components/Loading/Loading'
 
 interface MenuData {
   [day: string]: {
@@ -44,7 +45,7 @@ const Cardapio = () => {
   }, [])
 
   if (loading) {
-    return <div className="text-center mt-10 text-gray-600">Carregando...</div>
+    return <LoadingScreen />
   }
 
   if (!menuData) {
