@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import Link from 'next/link'
 
 interface SideBarProps {
@@ -29,10 +30,13 @@ const SideBar: React.FC<SideBarProps> = ({
         <ul>
           <li className="mb-10">
             <Link href="/">
-              <img
+              <Image
                 src="/images/logo_completa.png"
                 alt="logo"
+                height={1000}
+                width={1000}
                 className="w-36"
+                priority
               />
             </Link>
 
