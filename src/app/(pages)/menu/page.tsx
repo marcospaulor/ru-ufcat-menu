@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from 'react'
 import { firestoreService } from '@/app/services/FirestoreServices' // Substitua pelo caminho correto da configuração do Firebase
 
