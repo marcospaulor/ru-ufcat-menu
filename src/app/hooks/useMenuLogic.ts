@@ -133,9 +133,7 @@ export function useMenuLogic() {
           { almoco: Record<string, string>; janta: Record<string, string> }
         >
       )
-      console.log(menuData)
-      // await firestoreService.updateDocument('ru', 'menu', menuData)
-      alert('Cardápio enviado com sucesso!')
+      await firestoreService.updateDocument('ru', 'menu', menuData)
       setIsSubmitModalOpen(false)
     } catch (error) {
       console.error('Erro ao enviar cardápio:', error)
