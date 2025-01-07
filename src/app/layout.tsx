@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 }
 
 const rawline = localFont({ src: '/fonts/rawline-500.ttf' })
-// const workSans = localFont({ src: '/fonts/WorkSans-Regular.ttf' })
 
 export default function RootLayout({
   children,
