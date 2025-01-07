@@ -26,7 +26,7 @@ export default function Modal({
           {onConfirm && (
             <button
               onClick={onConfirm}
-              className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+              className="px-4 py-2 bg-green-ufcat text-white rounded-lg hover:bg-orange-ufcat"
             >
               Confirmar
             </button>
