@@ -66,6 +66,7 @@ function Login() {
               width={1000}
               height={1000}
               className="w-40 mb-8 mx-auto block"
+              priority
             />
           </a>
 
@@ -134,14 +135,6 @@ function Login() {
                   >
                     Lembrar
                   </label>
-                </div>
-                <div className="text-sm">
-                  <a
-                    href="javascript:void(0);"
-                    className="text-blue-600 hover:underline font-semibold"
-                  >
-                    Esqueceu sua senha?
-                  </a>
                 </div>
               </div>
 
