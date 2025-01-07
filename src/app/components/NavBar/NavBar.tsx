@@ -9,7 +9,7 @@ import Image from 'next/image'
 const NavBar: React.FC = () => {
   const [SideBarOpen, setSideBarOpen] = useState(false)
   const [ProfileDropdownOpen, setProfileDropdownOpen] = useState(false)
-  const [activeLink, setActiveLink] = useState<string>('update_menu') // Estado para o link ativo
+  const [activeLink, setActiveLink] = useState<string>('/') // Estado para o link ativo
   const handleLogout = useLogout()
 
   const toggleSideBar = () => {
