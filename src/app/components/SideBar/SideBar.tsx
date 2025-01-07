@@ -60,6 +60,15 @@ const SideBar: React.FC<SideBarProps> = ({
           </li>
           <li>
             <Link
+              href="/"
+              className=" hover:text-white text-[15px] block hover:bg-orange-ufcat rounded px-4 py-2.5 transition-all"
+              onClick={toggleSideBar}
+            >
+              Cardápio
+            </Link>
+          </li>
+          <li>
+            <Link
               href="update_menu"
               className=" hover:text-white text-[15px] block hover:bg-orange-ufcat rounded px-4 py-2.5 transition-all"
               onClick={toggleSideBar}

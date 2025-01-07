@@ -38,6 +38,7 @@ const NavBar: React.FC = () => {
         </Link>
         <ul className="hidden lg:flex lg:gap-x-10 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-2/3 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-4 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50">
           {[
+            { href: '/', label: 'Cardápio' },
             { href: 'update_menu', label: 'Atualizar Cardápio' },
             { href: 'add_food', label: 'Cadastrar Alimentos' },
             { href: 'rating', label: 'Avaliações' },
