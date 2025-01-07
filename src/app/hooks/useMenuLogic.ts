@@ -63,13 +63,15 @@ export function useMenuLogic() {
       const currentSelection = prev[activeTab][mealTime]
       const isSelected = currentSelection.includes(food)
 
+      const updatedSelection = isSelected
+        ? currentSelection.filter((item) => item !== food)
+        : [...currentSelection, food]
+
       return {
         ...prev,
         [activeTab]: {
           ...prev[activeTab],
-          [mealTime]: isSelected
-            ? currentSelection.filter((item) => item !== food)
-            : [...currentSelection, food],
+          [mealTime]: updatedSelection,
         },
       }
     })
@@ -96,15 +98,32 @@ export function useMenuLogic() {
 
           Object.entries(meals).forEach(([time, foods]) => {
             const mealTime = time === 'Almoço' ? 'almoco' : 'janta'
-            foods.forEach((food) => {
+            const groupedFoods = foods.reduce((acc, food) => {
               const category = categories
                 .find((cat) => cat.foods.includes(food))
                 ?.category.toLowerCase()
                 .replace(' ', '_')
               if (category) {
-                acc[day][mealTime][category] = food
+                acc[category] = acc[category]
+                  ? [...acc[category], food]
+                  : [food]
               }
-            })
+              return acc
+            }, {} as Record<string, string[]>)
+
+            // Formatar cada grupo de alimentos antes de atribuir ao resultado
+            const formattedGroupedFoods = Object.fromEntries(
+              Object.entries(groupedFoods).map(([category, foodList]) => [
+                category,
+                foodList.length > 1
+                  ? `${foodList.slice(0, -1).join(', ')} e ${
+                      foodList[foodList.length - 1]
+                    }`
+                  : foodList[0], // Apenas um alimento
+              ])
+            )
+
+            acc[day][mealTime] = formattedGroupedFoods
           })
 
           return acc
@@ -114,9 +133,8 @@ export function useMenuLogic() {
           { almoco: Record<string, string>; janta: Record<string, string> }
         >
       )
-
-      // Atualizar o menu no Firebase
-      await firestoreService.updateDocument('ru', 'menu', menuData)
+      console.log(menuData)
+      // await firestoreService.updateDocument('ru', 'menu', menuData)
       alert('Cardápio enviado com sucesso!')
       setIsSubmitModalOpen(false)
     } catch (error) {
