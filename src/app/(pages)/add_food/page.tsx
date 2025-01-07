@@ -126,7 +126,7 @@ const AddFood: React.FC = () => {
 
             <button
               type="submit"
-              className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+              className="px-4 py-2 bg-green-ufcat text-white rounded-lg hover:bg-orange-ufcat border border-green-ufcat hover:border-orange-ufcat"
             >
               Adicionar Comida
             </button>
@@ -159,16 +159,16 @@ const AddFood: React.FC = () => {
                   <td className="border border-gray-300 px-2 py-2">
                     {food.category}
                   </td>
-                  <td className="flex flex-col md:flex-row justify-center items-center border border-gray-300 px-2 py-2 space-y-2 md:space-x-2">
+                  <td className="flex flex-col md:flex-row justify-center items-center border border-gray-300 px-2 py-2 space-y-2 md:space-y-0 md:space-x-2">
                     <button
                       onClick={() => handleEditFood(food)}
-                      className="px-2 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                      className="px-2 py-1 bg-green-ufcat cursor-pointer text-white rounded-lg hover:bg-orange-ufcat"
                     >
                       <FaPen />
                     </button>
                     <span
                       onClick={() => setDeleteFoodId(food.id)}
-                      className="px-2 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                      className="px-2 py-1 bg-red-ufcat cursor-pointer text-white rounded-lg hover:bg-red-600"
                     >
                       <FaTrash />
                     </span>
@@ -199,7 +199,7 @@ const AddFood: React.FC = () => {
               </button>
               <button
                 onClick={handleDeleteFood}
-                className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                className="px-4 py-2 bg-red-ufcat text-white rounded-lg hover:bg-red-600"
               >
                 Excluir
               </button>
@@ -244,7 +244,7 @@ const AddFood: React.FC = () => {
               </button>
               <button
                 onClick={handleAddOrEditFood}
-                className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+                className="px-4 py-2 bg-green-ufcat text-white rounded-lg hover:bg-orange-ufcat"
               >
                 Salvar
               </button>
