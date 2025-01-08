@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
     // Configurar o conteúdo do e-mail
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'marcos_paulo.rodrigues@hotmail.com', // Substitua pelo e-mail de destino
+      to: process.env.EMAIL_SUPP, // Substitua pelo e-mail de destino
       subject: 'Ajuda - Formulário de Contato RU - UFCAT',
       text: `Nome: ${name}\nE-mail: ${email}\n\nMensagem:\n${message}`,
       replyTo: email,
