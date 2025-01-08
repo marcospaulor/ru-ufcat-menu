@@ -31,7 +31,7 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
         } bg-green-ufcat text-white shadow-lg py-6 px-6 rounded sm:min-w-[320px] max-sm:min-w-[250px] absolute right-4 top-14 z-50`}
       >
         <div className="flex justify-between items-center">
-          <h5 className="text-sm font-bold">Bem-vindo(a), [USUÁRIO]</h5>
+          <h5 className="text-sm font-bold">Bem-vindo(a)</h5>
 
           <button
             type="button"
