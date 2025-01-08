@@ -58,8 +58,9 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
         <ul className="space-y-3">
           <li>
             <Link
-              href="#"
+              href="help"
               className="block text-sm hover:text-white hover:bg-orange-ufcat rounded px-4 py-2.5 transition-all"
+              onClick={toggleDropdown}
             >
               Ajuda
             </Link>
