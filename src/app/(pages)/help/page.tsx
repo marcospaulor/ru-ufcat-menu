@@ -43,7 +43,7 @@ const HelpPage = () => {
   }
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 px-6">
       <h1 className="text-2xl font-bold mb-4">Ajuda</h1>
       <form onSubmit={handleSubmit} className="max-w-md mx-auto">
         <div className="mb-4">
