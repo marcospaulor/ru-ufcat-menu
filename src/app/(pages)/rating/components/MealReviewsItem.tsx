@@ -33,9 +33,9 @@ const MealReviewItem: React.FC<MealReviewItemProps> = ({
 
   const LabelNames: { [key: string]: string } = {
     acompanhamento: 'Acompanhamento',
-    guarnicao: 'Guarnição',
+    guarnição: 'Guarnição',
     prato_principal: 'Prato Principal',
-    prato_vegano: 'Prato Vegetariano/Vegetariano',
+    'vegano/vegetariano': 'Prato Vegano/Vegetariano',
     salada: 'Salada',
     sobremesa: 'Sobremesa',
   }
