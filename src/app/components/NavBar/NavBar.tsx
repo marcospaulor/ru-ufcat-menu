@@ -1,16 +1,20 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import ProfileDropdown from '@/app/components/ProfileDropdown/ProfileDropdown'
 import SideBar from '@/app/components/SideBar/SideBar'
+import { usePathname } from 'next/navigation'
 import { useLogout } from '@/app/hooks/useLogout'
 import Image from 'next/image'
 
 const NavBar: React.FC = () => {
   const [SideBarOpen, setSideBarOpen] = useState(false)
   const [ProfileDropdownOpen, setProfileDropdownOpen] = useState(false)
-  const [activeLink, setActiveLink] = useState<string>('/') // Estado para o link ativo
+  const pathname = usePathname()
+  const [activeLink, setActiveLink] = useState(pathname)
   const handleLogout = useLogout()
+
+  useEffect(() => setActiveLink(pathname), [pathname])
 
   const toggleSideBar = () => {
     setSideBarOpen((prev) => !prev)
@@ -40,9 +44,9 @@ const NavBar: React.FC = () => {
         <ul className="hidden lg:flex lg:gap-x-10 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-2/3 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-4 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50">
           {[
             { href: '/', label: 'Cardápio' },
-            { href: 'update_menu', label: 'Atualizar Cardápio' },
-            { href: 'add_food', label: 'Cadastrar Alimentos' },
-            { href: 'rating', label: 'Avaliações' },
+            { href: '/update_menu', label: 'Atualizar Cardápio' },
+            { href: '/add_food', label: 'Cadastrar Alimentos' },
+            { href: '/rating', label: 'Avaliações' },
           ].map((link) => (
             <li
               key={link.href}
