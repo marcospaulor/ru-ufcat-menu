@@ -155,7 +155,7 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 
 ## 📬 Contato
 
-Para dúvidas ou sugestões, abra uma [issue](https://github.com/marcospaulor/ru-ufcat-menu/issues) ou entre em contato via [seu-email@example.com](mailto:dev.silva.marcos@gmail.com).
+Para dúvidas ou sugestões, abra uma [issue](https://github.com/marcospaulor/ru-ufcat-menu/issues) ou entre em contato via [dev.silva.marcos@gmail.com](mailto:dev.silva.marcos@gmail.com).
 
 ---
 
