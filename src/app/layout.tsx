@@ -5,7 +5,7 @@ import { AuthProvider } from './context/AuthContext'
 import NavBarWithAuth from './components/NavBarWithAuth/NavBarWithAuth'
 
 export const metadata: Metadata = {
-  title: 'Cardápio Serviços UFCAT - Admin',
+  title: 'Cardápio UFCAT Serviços - Admin',
   description: 'Sistema de gerenciamento de cardápio para os serviços da UFCAT',
 }
 
