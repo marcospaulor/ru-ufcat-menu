@@ -1,7 +1,7 @@
 # Sistema de Gerenciamento de Cardápio do RU - UFCAT Serviços
 
-[![GitHub stars](https://img.shields.io/github/stars/seu-usuario/sistema-ru-menu-ufcat)](https://github.com/seu-usuario/sistema-ru-menu-ufcat/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/seu-usuario/sistema-ru-menu-ufcat)](https://github.com/seu-usuario/sistema-ru-menu-ufcat/issues)
+[![GitHub stars](https://img.shields.io/github/stars/marcospaulor/ru-ufcat-menu)](https://github.com/marcospaulor/ru-ufcat-menu/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/seu-usuario/sistema-ru-menu-ufcat)](https://github.com/marcospaulor/ru-ufcat-menu/issues)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 O **Sistema de Gerenciamento de Cardápio do RU - UFCAT Serviços** é uma aplicação web desenvolvida para gerenciar o cardápio do Restaurante Universitário (RU) da UFCAT. Construído com **Next.js** e **Firebase**, permite atualizar cardápios e visualizar avaliações da comunidade universitária, integrando-se ao aplicativo **UFCAT Serviços** (desenvolvido com **Flutter** e **Firebase**). Este projeto promove transparência e engajamento na gestão nutricional da UFCAT.
