@@ -1,112 +1,124 @@
-# Sistema de Gerenciamento de Cardápio do RU - UFCAT Serviços
+# RU Menu Management System - UFCAT Services
 
 [![GitHub stars](https://img.shields.io/github/stars/marcospaulor/ru-ufcat-menu)](https://github.com/marcospaulor/ru-ufcat-menu/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/seu-usuario/sistema-ru-menu-ufcat)](https://github.com/marcospaulor/ru-ufcat-menu/issues)
+[![GitHub issues](https://img.shields.io/github/issues/marcospaulor/ru-ufcat-menu)](https://github.com/marcospaulor/ru-ufcat-menu/issues)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-O **Sistema de Gerenciamento de Cardápio do RU - UFCAT Serviços** é uma aplicação web desenvolvida para gerenciar o cardápio do Restaurante Universitário (RU) da UFCAT. Construído com **Next.js** e **Firebase**, permite atualizar cardápios e visualizar avaliações da comunidade universitária, integrando-se ao aplicativo **UFCAT Serviços** (desenvolvido com **Flutter** e **Firebase**). Este projeto promove transparência e engajamento na gestão nutricional da UFCAT.
+The **RU Menu Management System - UFCAT Services** is a web application designed to manage the menu of the University Restaurant (RU) at Universidade Federal de Catalão (UFCAT). Built with **Next.js** and **Firebase**, it enables menu updates and displays community feedback, seamlessly integrating with the **UFCAT Services** mobile app (developed with **Flutter** and **Firebase**). This project promotes transparency and engagement in UFCAT’s nutritional management.
 
-## 🚀 Funcionalidades
+---
 
-- Atualização dinâmica do cardápio do RU.
-- Visualização de avaliações e feedback da comunidade.
-- Integração com o app UFCAT Serviços via Firebase.
-- Interface intuitiva e responsiva para administradores.
+## 🚀 Features
 
-## 🛠️ Tecnologias
+- Dynamic updates to the RU menu.
+- Visualization of community feedback and evaluations.
+- Integration with the UFCAT Services mobile app via Firebase.
+- Intuitive and responsive interface for administrators.
+
+---
+
+## 🛠️ Technologies
 
 - **Frontend**: Next.js, React, TypeScript
 - **Backend**: Firebase (Firestore, Authentication)
-- **Estilização**: Tailwind CSS (substitua se usar outra tecnologia)
-- **Ferramentas**: Conventional Commits, ESLint, Prettier
+- **Styling**: Tailwind CSS
+- **Tools**: Conventional Commits, ESLint, Prettier
 
-## 📋 Pré-requisitos
+---
 
-- Node.js (v16 ou superior)
-- npm ou Yarn
-- Conta no Firebase (para configuração do backend)
+## 📋 Prerequisites
+
+- Node.js (v16 or higher)
+- npm or Yarn
+- Firebase account (for backend configuration)
 - Git
 
-## ⚙️ Instalação e Execução
+---
 
-1. **Clone o repositório**:
+## ⚙️ Installation and Setup
+
+1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/seu-usuario/sistema-ru-menu-ufcat.git
-   cd sistema-ru-menu-ufcat
+   git clone https://github.com/marcospaulor/ru-ufcat-menu.git
+   cd ru-ufcat-menu
    ```
 
-2. **Instale as dependências**:
+2. **Install Dependencies**:
    ```bash
    npm install
    ```
 
-3. **Configure o Firebase**:
-   - Crie um projeto no [Firebase Console](https://console.firebase.google.com/).
-   - Ative o Firestore e Authentication.
-   - Copie as credenciais do Firebase e adicione-as em um arquivo `.env.local`:
+3. **Configure Firebase**:
+   - Create a project in the [Firebase Console](https://console.firebase.google.com/).
+   - Enable Firestore and Authentication.
+   - Copy the Firebase credentials and add them to a `.env.local` file:
      ```env
-     NEXT_PUBLIC_FIREBASE_API_KEY=seu_api_key
-     NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=seu_auth_domain
-     NEXT_PUBLIC_FIREBASE_PROJECT_ID=seu_project_id
-     NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=seu_storage_bucket
-     NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=seu_messaging_sender_id
-     NEXT_PUBLIC_FIREBASE_APP_ID=seu_app_id
+     NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+     NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+     NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+     NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+     NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+     NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
      ```
 
-4. **Execute a aplicação**:
+4. **Run the Application**:
    ```bash
    npm run dev
    ```
-   Abra [http://localhost:3000](http://localhost:3000) no navegador para ver o resultado.
+   Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-## 🚀 Deploy
+---
 
-1. **Build da aplicação**:
+## 🚀 Deployment
+
+1. **Build the Application**:
    ```bash
    npm run build
    ```
 
 2. **Deploy**:
-   - Use plataformas como Vercel, Netlify ou Firebase Hosting.
-   - Exemplo para Vercel:
+   - Use platforms like Vercel, Netlify, or Firebase Hosting.
+   - Example for Vercel:
      ```bash
      vercel
      ```
 
-## 📂 Estrutura do Projeto
+---
+
+## 📂 Project Structure
 
 ```
-sistema-ru-menu-ufcat/
+ru-ufcat-menu/
 ├── src/
 │   ├── app/
-│   │   ├── components/         # Componentes React
-│   │   │   ├── MenuForm.tsx    # Formulário para atualização de cardápios
-│   │   │   ├── FeedbackList.tsx # Lista de avaliações
-│   │   ├── hooks/             # Hooks customizados
-│   │   │   ├── useMenu.ts     # Hook para gerenciar cardápios
-│   │   │   ├── useFeedback.ts # Hook para avaliações
-│   │   ├── interfaces/        # Interfaces TypeScript
-│   │   │   ├── IMenu.ts       # Interface para cardápios
-│   │   │   ├── IFeedback.ts   # Interface para avaliações
-│   ├── pages/                 # Páginas Next.js
-│   ├── public/                # Arquivos estáticos
-│   ├── styles/                # Estilos globais (ex.: Tailwind CSS)
-├── .env.local                 # Variáveis de ambiente
-├── README.md                  # Documentação
+│   │   ├── components/         # React components
+│   │   │   ├── MenuForm.tsx    # Form for updating menus
+│   │   │   ├── FeedbackList.tsx # List of feedback entries
+│   │   ├── hooks/             # Custom hooks
+│   │   │   ├── useMenu.ts     # Hook for menu management
+│   │   │   ├── useFeedback.ts # Hook for feedback management
+│   │   ├── interfaces/        # TypeScript interfaces
+│   │   │   ├── IMenu.ts       # Interface for menus
+│   │   │   ├── IFeedback.ts   # Interface for feedback
+│   ├── pages/                 # Next.js pages
+│   ├── public/                # Static assets
+│   ├── styles/                # Global styles (e.g., Tailwind CSS)
+├── .env.local                 # Environment variables
+├── README.md                  # Project documentation
 ```
 
-### Adicionando Componentes
-- Crie componentes em `src/app/components/`.
-- Declare propriedades com TypeScript:
+### Adding Components
+- Create components in `src/app/components/`.
+- Define properties with TypeScript:
   ```typescript
   export interface MenuFormProps {
     onSubmit: (data: IMenu) => void;
   }
   ```
 
-### Adicionando Hooks
-- Crie hooks em `src/app/hooks/`.
-- Exemplo:
+### Adding Hooks
+- Create hooks in `src/app/hooks/`.
+- Example:
   ```typescript
   export interface UseMenuReturn {
     menus: IMenu[];
@@ -114,9 +126,9 @@ sistema-ru-menu-ufcat/
   }
   ```
 
-### Adicionando Interfaces
-- Crie interfaces em `src/app/interfaces/`.
-- Cada interface mapeia uma entidade ou rota da API:
+### Adding Interfaces
+- Create interfaces in `src/app/interfaces/`.
+- Each interface maps an entity or API route:
   ```typescript
   export interface IMenu {
     id: string;
@@ -125,38 +137,46 @@ sistema-ru-menu-ufcat/
   }
   ```
 
+---
+
 ## 📝 Conventional Commits
 
-Siga o padrão de **Conventional Commits** para mensagens de commit:
+Follow the **Conventional Commits** standard for commit messages:
 
-- `feat`: Novas funcionalidades.
-- `fix`: Correção de bugs.
-- `refactor`: Refatoração de código.
-- `style`: Alterações de estilo (ex.: CSS).
-- `test`: Criação de testes.
-- `docs`: Atualizações na documentação.
-- `chore`: Tarefas que não alteram o código.
+- `feat`: New features.
+- `fix`: Bug fixes.
+- `refactor`: Code refactoring.
+- `style`: Styling changes (e.g., CSS).
+- `test`: Adding tests.
+- `docs`: Documentation updates.
+- `chore`: Miscellaneous tasks not affecting code.
 
-Exemplo:
+Example:
 ```bash
 git commit -m "feat: add menu update form"
 ```
 
-## 🤝 Contribuição
+---
 
-1. Faça um fork do repositório.
-2. Crie uma branch para sua feature (`git checkout -b feat/nova-funcionalidade`).
-3. Commit suas alterações seguindo o padrão Conventional Commits.
-4. Envie um pull request.
+## 🤝 Contributing
 
-## 📜 Licença
-
-Este projeto está licenciado sob a [MIT License](LICENSE).
-
-## 📬 Contato
-
-Para dúvidas ou sugestões, abra uma [issue](https://github.com/marcospaulor/ru-ufcat-menu/issues) ou entre em contato via [dev.silva.marcos@gmail.com](mailto:dev.silva.marcos@gmail.com).
+1. Fork the repository.
+2. Create a feature branch (`git checkout -b feat/new-feature`).
+3. Commit your changes using Conventional Commits.
+4. Submit a pull request.
 
 ---
 
-⭐ **Gostou do projeto? Dê uma estrela no GitHub!**
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 📬 Contact
+
+For questions or suggestions, open an [issue](https://github.com/marcospaulor/ru-ufcat-menu/issues) or contact [dev.silva.marcos@gmail.com](mailto:dev.silva.marcos@gmail.com).
+
+---
+
+⭐ **Enjoying the project? Give it a star on GitHub!**
